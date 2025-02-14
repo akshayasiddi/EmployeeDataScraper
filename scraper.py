@@ -139,7 +139,7 @@ def screenshot_table(pivot_sheet, workbook):
     time.sleep(2)
 
     # Crop the region of the pivot table based on its coordinates
-    ImageGrab.grabclipboard().save("c:/Akshaya_scripts/python_projects/pivot_table_screenshot.png")
+    ImageGrab.grabclipboard().save("c:/Akshaya_scripts/python_projects/PivotTable_Data_Insights.png")
 
     print("Screenshot saved successfully.")
 
@@ -246,7 +246,7 @@ def send_mail():
     """
 
     excel_file_path = "c:/Akshaya_scripts/python_projects/test/Employee_Data_Summary.xlsx"
-    screenshot_path = "c:/Akshaya_scripts/python_projects/pivot_table_screenshot.png"
+    screenshot_path = "c:/Akshaya_scripts/python_projects/PivotTable_Data_Insights.png"
 
     if not os.path.exists(excel_file_path) or not os.path.exists(screenshot_path):
         print("One or both files do not exist.")
@@ -255,21 +255,19 @@ def send_mail():
         namespace = outlook.GetNamespace("MAPI")
         mail = outlook.CreateItem(0)   # Create a new email item
         
-        mail.To = 'siddisa@mail.uc.edu'
-        mail.Subject = 'Pivot Table Analysis Report - Average Salary by Department, Business Unit, Gender & Ethnicity'
+        mail.To = 'adam.kapadia@aristocrat.com'
+        mail.Subject = 'Pivot Table Analysis Report - Employee Dataset'
 
         body = """
         <html>
         <body>
-            <p>Hey Akshaya,</p>
+            <p>Hey Adam,</p>
 
             <p>I hope this email finds you well.</p>
 
-            <p>Attached, you will find the Excel file containing the pivot table analysis, which includes a summary of the average annual salary by department, business unit, gender, and ethnicity.</p>
+            <p>Attached, you will find the Excel file containing the clean data, pivot table analysis and the screenshot of the pivot table for your reference.</p>
 
-            <p>Additionally, please find the screenshot of the pivot table below for your reference. This provides a quick overview of the data breakdown, making it easier to interpret the results visually.</p>
-
-            <p>The script used to automate this pivot table generation is available at the following GitHub link: <a href="https://github.com/your-repository-link">GitHub Repository</a>.</p>
+            <p>The script used to automate this process is available at the following GitHub link: <a href="https://github.com/akshayasiddi/EmployeeDataScraper.git">GitHub Repository</a>.</p>
 
             <h3>Overview:</h3>
                 <p>The data provides a comprehensive breakdown of average annual salaries by gender, ethnicity, and job category. It also highlights the salary trends within specific departments.</p>
@@ -301,7 +299,7 @@ def send_mail():
                 </li>
                 </ul>
 
-            <p>Thank you for your time, and I look forward to your feedback.</p>
+            <p>Thank you for your time, and I look forward to your feedback!</p>
 
             <p>Best regards,</p>
             <p><strong>Akshaya</strong></p>
@@ -313,7 +311,7 @@ def send_mail():
         
         mail.Attachments.Add(excel_file_path)
         mail.Attachments.Add(screenshot_path)
-
+        mail.SentOnBehalfOfName = "siddisa@mail.uc.edu"
         mail.Send()
 
         print(f"Email sent successfully with attachments.")
@@ -324,27 +322,24 @@ def send_error_email(error_message):
     namespace = outlook.GetNamespace("MAPI")
     mail = outlook.CreateItem(0)  
     
-    mail.To = 'siddiakshayasai@gmail.com'  
-    mail.Subject = 'Error in Generating Employee Data'
+    mail.To = 'siddisa@mail.uc.edu'  
+    mail.Subject = 'Error in Pivot Table Analysis Report - Employee Dataset'
 
     body = f"""
     <html>
     <body>
-        <p>Hello,</p>
 
         <p>There was an error in the script execution. Below is the error message:</p>
 
         <p><strong>Error Message:</strong></p>
         <p>{error_message}</p>
 
-        <p>Best regards,</p>
-        <p><strong>Akshaya</strong></p>
     </body>
     </html>
     """
     
     mail.HTMLBody = body
-    
+    mail.SentOnBehalfOfName = "siddisa@mail.uc.edu"
     mail.Send()
     print(f"Error email sent successfully.")
 
@@ -410,84 +405,3 @@ if __name__ == '__main__':
             else:
                 print(f"Attempt {attempt} failed. Retrying...")  # Retry message
                 time.sleep(1)  # Optional sleep before retrying
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
